@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ConsumoCombustivel</string>
+
+    <string-array name="tipos_combutiveis">
+        <item>Etanol</item>
+        <item>Gasolina</item>
+        <item>Diesel</item>
+    </string-array>
+</resources>
