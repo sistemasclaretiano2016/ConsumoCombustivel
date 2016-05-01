@@ -1,8 +1,12 @@
 package br.com.pedrogutierres.consumocombustivel;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,8 +16,10 @@ import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener {
 
     private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 
@@ -23,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText edtPrecoLitro;
     private Button btnCalcular;
     private TextView txtConsumoMedio;
+    private TextView txtKmPorLitro;
     private TextView txtTotalPagar;
 
     @Override
@@ -35,10 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edtQtdeLitros = (EditText) findViewById(R.id.edt_quantidade_litros);
         edtPrecoLitro = (EditText) findViewById(R.id.edt_preco);
         txtConsumoMedio = (TextView) findViewById(R.id.txt_consumo_medio);
+        txtKmPorLitro = (TextView) findViewById(R.id.txt_km_por_litro);
         txtTotalPagar = (TextView) findViewById(R.id.txt_total_pagar);
         btnCalcular = (Button) findViewById(R.id.btn_calcular);
 
         btnCalcular.setOnClickListener(this);
+
+        edtPrecoLitro.setOnEditorActionListener(this);
 
         ArrayAdapter<String> tipos_combutiveis = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line,
@@ -59,6 +69,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         try {
             kmRodados = Double.parseDouble(edtKM.getText().toString());
+
+            if (kmRodados <= 0) {
+                Toast.makeText(this, "Favor informar os KM rodados.", Toast.LENGTH_SHORT).show();
+                return;
+            }
         } catch (Exception ex) {
             Toast.makeText(this, "Favor informar os KM rodados.", Toast.LENGTH_SHORT).show();
             return;
@@ -66,6 +81,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         try {
             qtdeLitros = Double.parseDouble(edtQtdeLitros.getText().toString());
+
+            if (qtdeLitros <= 0) {
+                Toast.makeText(this, "Favor informar uma quantidade de litros maior do que zero.", Toast.LENGTH_SHORT).show();
+                return;
+            }
         } catch (Exception ex) {
             Toast.makeText(this, "Favor informar a quantidade de litros abastecida.", Toast.LENGTH_SHORT).show();
             return;
@@ -78,10 +98,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        double consumoMedio = kmRodados / qtdeLitros;
+        double consumoMedioPorKm = qtdeLitros / kmRodados;
+        double kmPorLitro = kmRodados / qtdeLitros;
         double totalPagar = qtdeLitros * precoCombustivel;
 
-        txtConsumoMedio.setText(String.format("Consumo médio por LT: %s", consumoMedio));
+        txtConsumoMedio.setText(String.format("Consumo médio por KM: %.2f", consumoMedioPorKm));
+        txtKmPorLitro.setText(String.format("KM rodado por LT: %s", kmPorLitro));
         txtTotalPagar.setText(String.format("Total Pagar: %s", nf.format(totalPagar)));
+    }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (v == edtPrecoLitro && actionId == EditorInfo.IME_ACTION_DONE) {
+            calcularConsumoEPagar();
+            return true;
+        }
+        return false;
     }
 }
