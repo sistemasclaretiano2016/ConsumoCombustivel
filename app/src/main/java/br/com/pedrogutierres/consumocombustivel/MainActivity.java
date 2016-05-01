@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         double kmPorLitro = kmRodados / qtdeLitros;
         double totalPagar = qtdeLitros * precoCombustivel;
 
-        txtConsumoMedio.setText(String.format("Consumo médio por KM: %.2f", consumoMedioPorKm));
-        txtKmPorLitro.setText(String.format("KM rodado por LT: %s", kmPorLitro));
+        txtConsumoMedio.setText(String.format("Cons. médio LT por KM: %.3f", consumoMedioPorKm));
+        txtKmPorLitro.setText(String.format("KM rodado por LT: %.1f", kmPorLitro));
         txtTotalPagar.setText(String.format("Total Pagar: %s", nf.format(totalPagar)));
     }
 

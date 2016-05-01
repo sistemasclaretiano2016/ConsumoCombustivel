@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,138 +10,166 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="br.com.pedrogutierres.consumocombustivel.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_launcher"/>
-
-    <TextView
-        android:id="@+id/txt_km_rodados"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/edt_km_rodados"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="KM Rodados:"
-        android:textSize="20sp"/>
-
-    <EditText
-        android:id="@+id/edt_km_rodados"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_toEndOf="@+id/txt_km_rodados"
-        android:layout_toRightOf="@+id/txt_km_rodados"
-        android:gravity="center"
-        android:imeOptions="actionNext"
-        android:inputType="numberDecimal"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txt_combustivel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/spn_combustivel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Combustível:"
-        android:textSize="20sp"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher"/>
 
-    <Spinner
-        android:id="@+id/spn_combustivel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:gravity="bottom"
-        android:layout_below="@+id/edt_km_rodados"
-        android:layout_toEndOf="@+id/txt_combustivel"
-        android:layout_toRightOf="@+id/txt_combustivel"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:stretchColumns="2">
 
-    <TextView
-        android:id="@+id/txt_quantidade_litros"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/edt_quantidade_litros"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Litros abastecidos:"
-        android:textSize="20sp"/>
+            <TableRow
+                android:gravity="center">
 
-    <EditText
-        android:id="@+id/edt_quantidade_litros"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spn_combustivel"
-        android:layout_toEndOf="@+id/txt_quantidade_litros"
-        android:layout_toRightOf="@+id/txt_quantidade_litros"
-        android:gravity="center"
-        android:imeOptions="actionNext"
-        android:inputType="numberDecimal"/>
+                <TextView
+                    android:id="@+id/txt_km_rodados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="KM Rodados:"
+                    android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/txt_preco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/edt_preco"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Preço Por LT:"
-        android:textSize="20sp"/>
+                <EditText
+                    android:id="@+id/edt_km_rodados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:gravity="center"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"/>
+            </TableRow>
 
-    <EditText
-        android:id="@+id/edt_preco"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edt_quantidade_litros"
-        android:layout_toEndOf="@+id/txt_preco"
-        android:layout_toRightOf="@+id/txt_preco"
-        android:gravity="center"
-        android:imeOptions="actionDone"
-        android:inputType="numberDecimal"/>
+            <TableRow
+                android:gravity="center">
 
-    <Button
-        android:id="@+id/btn_calcular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/edt_preco"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/edt_preco"
-        android:layout_below="@+id/txt_preco"
-        android:layout_marginTop="24dp"
-        android:text="Calcular"/>
+                <TextView
+                    android:id="@+id/txt_combustivel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Combustível:"
+                    android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/txt_consumo_medio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_calcular"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+                <Spinner
+                    android:id="@+id/spn_combustivel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:gravity="bottom"/>
+            </TableRow>
 
-    <TextView
-        android:id="@+id/txt_km_por_litro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_consumo_medio"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+            <TableRow
+                android:gravity="center">
 
-    <TextView
-        android:id="@+id/txt_total_pagar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_km_por_litro"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+                <TextView
+                    android:id="@+id/txt_quantidade_litros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Litros abastecidos:"
+                    android:textSize="20sp"/>
 
+                <EditText
+                    android:id="@+id/edt_quantidade_litros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:gravity="center"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"/>
+            </TableRow>
 
-</RelativeLayout>
+            <TableRow
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/txt_preco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Preço Por LT:"
+                    android:textSize="20sp"/>
+
+                <EditText
+                    android:id="@+id/edt_preco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:gravity="center"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn_calcular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+
+                    android:layout_span="2"
+
+                    android:text="Calcular"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/txt_consumo_medio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+            </TableRow>
+
+            <TableRow
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_km_por_litro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+            </TableRow>
+
+            <TableRow
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_total_pagar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+</ScrollView>
