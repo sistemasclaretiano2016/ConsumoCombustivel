@@ -1,4 +1,4 @@
-package br.com.pedrogutierres.consumocombustivel;
+package br.com.claretiano.consumocombustivel;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
